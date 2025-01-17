@@ -1,10 +1,19 @@
 import re
 
 def extract_markdown_images(text):
-    alt_text = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
-    url = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    images = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
     result = []
-    print(url)
-    for i in range(len(alt_text)):
-        result.append((alt_text[i], url[i]))
+    for i in range(len(images)):
+        result.append(images[i])
+    if result == []:
+        return None
+    return result
+
+def extract_markdown_links(text):
+    urls = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    result = []
+    for i in range(len(urls)):
+        result.append(urls[i])
+    if result == []:
+        return None
     return result
